@@ -94,18 +94,22 @@ Service-Pattern Design
 Business logic is abstracted into service classes to improve maintainability and testability.
 
  CoinGeckoService
+
     - Handles external API communication
     - Implements rate limiting
 
  TradeService
+
     - Manages buy/sell operations
     - Coordinates wallet and transaction updates
 
  Financial Integrity & Precision
 
  Data Types
+
     - decimal(15,2) Naira values
     - decimal(16,8) crypto precision (satoshi/Gwei)
+
     Prevents floating-point rounding errors common in financial applications.
 
 
