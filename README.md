@@ -78,13 +78,13 @@ Initialize the database and create the seeder test user:
 ### Test Credentials
 A default test user is created during seeding:
 
-    - Email: test@pgold.com
+- Email: test@pgold.com
 
-    - Password: password123
+- Password: password123
 
-    - Starting Balance: 1,000,000 NGN
+- Starting Balance: 1,000,000 NGN
 
-    - Initial Assets: 0.5 BTC
+- Initial Assets: 0.5 BTC
 
 
 ### Technical Architecture
@@ -95,29 +95,29 @@ Business logic is abstracted into service classes to improve maintainability and
 
  CoinGeckoService
 
-    - Handles external API communication
-    - Implements rate limiting
+- Handles external API communication
+- Implements rate limiting
 
  TradeService
 
-    - Manages buy/sell operations
-    - Coordinates wallet and transaction updates
+- Manages buy/sell operations
+- Coordinates wallet and transaction updates
 
  Financial Integrity & Precision
 
  Data Types
 
-    - decimal(15,2) Naira values
-    - decimal(16,8) crypto precision (satoshi/Gwei)
+- decimal(15,2) Naira values
+- decimal(16,8) crypto precision (satoshi/Gwei)
 
-    Prevents floating-point rounding errors common in financial applications.
+Prevents floating-point rounding errors common in financial applications.
 
 
  Atomic Transactions
 
-    - All trades use DB::transaction()
-    - Eloquent increment/decrement prevents race conditions
-    - Ensures consistency during concurrent operations
+- All trades use DB::transaction()
+- Eloquent increment/decrement prevents race conditions
+- Ensures consistency during concurrent operations
 
 
 
@@ -142,12 +142,17 @@ This protects users from price volatility and prevents API throttling
 ### Trade-offs & Assumptions
 
 Synchronous Ledger: 
-    - Used for MVP simplicity
-    - Production systems would use background queues(Redis)
+
+ - Used for MVP simplicity
+ - Production systems would use background queues(Redis)
+
 Caching Strategy
-    - 60 second cache balances accuracy and stability
+
+ - 60 second cache balances accuracy and stability
+
 Authentication
-    -Laravel Sanctum for secure token-based authentication
+
+ - Laravel Sanctum for secure token-based authentication
 
 
 ### API Endpoints
